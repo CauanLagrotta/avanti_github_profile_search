@@ -1,0 +1,25 @@
+@use "./variables.scss" as *;
+
+:focus {
+  outline: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--gray-800);
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: var(--font-stack);
+  font-weight: 400;
+  font-size: 1rem;
+}
