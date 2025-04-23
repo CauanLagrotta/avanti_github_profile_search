@@ -1,3 +1,72 @@
-h1{
-    color: var(--white-100);
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.display {
+  height: 30rem;
+  width: 60rem;
+  background: var(--black-900);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  gap: 1rem;
+  color: var(--white-100);
+
+  h1 {
+    font-weight: 200;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  .inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    width: 31.43rem;
+    height: 3rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0 3rem 0 1rem;
+    color: var(--black-900);
+    font-weight: 600;
+  }
+
+  input::placeholder {
+    color: var(--black-900);
+    font-weight: 600;
+  }
+
+  button {
+    position: absolute;
+    right: 0.2rem;
+    background: var(--blue-600);
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

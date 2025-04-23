@@ -11,7 +11,18 @@
 }
 
 body {
-  background: var(--gray-800);
+  background-color: var(--gray-800);
+  background-image: radial-gradient(
+      circle at top right,
+      var(--blue-600) 0%,
+      transparent 60%
+    ),
+    radial-gradient(circle at bottom left, var(--blue-600) 0%, transparent 60%);
+  background-repeat: no-repeat;
+  background-position: top right, bottom left;
+  background-size: 300px 300px, 300px 300px;
+
+  height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
