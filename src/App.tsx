@@ -1,7 +1,8 @@
 import style from "./App.module.scss";
 import github from "./assets/images/github.png";
 import SearchIcon from "@mui/icons-material/Search";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import debounce from "lodash.debounce";
 import { User } from "./types/types";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -9,6 +10,7 @@ export function App() {
   const [user, setUser] = useState<User | null>(null);
   const [usernameInput, setUsernameInput] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const getUser = async (username: string): Promise<User | null> => {
     try {
@@ -25,22 +27,46 @@ export function App() {
     }
   };
 
+  const debouncedSearch = useCallback(
+    debounce(async (username: string) => {
+      if (username.trim() === "") {
+        setUser(null);
+        setHasSearched(false);
+        return;
+      }
+
+      setLoading(true);
+      setHasSearched(true);
+
+      const userData = await getUser(username);
+      setUser(userData);
+      setLoading(false);
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    debouncedSearch(usernameInput);
+    return debouncedSearch.cancel;
+  }, [usernameInput, debouncedSearch]);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true);
+    debouncedSearch.cancel(); // Cancelar a pesquisa anterior
 
-    if (usernameInput) {
-      const userData = await getUser(usernameInput);
-      if (userData) {
-        setUser(userData);
-      } else {
-        setUser(null);
-      }
+    if (usernameInput.trim() === "") {
+      setUser(null);
+      setHasSearched(false);
+      return;
     }
+
+    setLoading(true);
+    setHasSearched(true);
+
+    const userData = await getUser(usernameInput);
+    setUser(userData);
     setLoading(false);
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -88,14 +114,19 @@ export function App() {
               </div>
             </div>
           ) : (
-            <div className={style.containerUserGithubDisplay}>
-              <div className={style.userGithubDisplay}>
-                <p className={style.notFound}>
-                  Nenhum perfil foi encontrado com ese nome de usuário. Tente
-                  novamente
-                </p>
+            !loading &&
+            hasSearched &&
+            !user &&
+            usernameInput.trim() !== "" && (
+              <div className={style.containerUserGithubDisplay}>
+                <div className={style.userGithubDisplay}>
+                  <p className={style.notFound}>
+                    Nenhum perfil foi encontrado com esse nome de usuário. Tente
+                    novamente
+                  </p>
+                </div>
               </div>
-            </div>
+            )
           )}
         </div>
       </main>

@@ -2,24 +2,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100vh;
   padding: 1rem;
 }
 
 .display {
+  
   width: 60rem;
   max-width: 100%;
   background: var(--black-900);
-  padding: 2rem;
   box-sizing: border-box;
 }
 
 .header {
+  height: 10rem;
+  color: var(--white-100);
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  color: var(--white-100);
 
   h1 {
     font-weight: 200;
@@ -27,12 +30,6 @@
     span {
       font-weight: bold;
     }
-  }
-
-  img {
-    padding: 1rem;
-    width: 6rem;
-    height: 6rem;
   }
 }
 
@@ -46,12 +43,10 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 500px;
   }
 
   input {
-    width: 100%;
+    width: 31.43rem;
     height: 3rem;
     border: none;
     border-radius: 0.5rem;
@@ -73,7 +68,8 @@
     cursor: pointer;
     font-size: 1.2rem;
     border-radius: 0.5rem;
-    padding: 0.6rem;
+    padding: 0.6rem 0.6rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,6 +125,13 @@
       }
     }
   }
+}
+
+@media (min-width: 1024px) {
+  .display {
+    height: 33rem;
+  }
+
 }
 
 @media (max-width: 768px) {
