@@ -2,24 +2,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 100vh;
+  padding: 1rem;
 }
 
 .display {
-  height: 33rem;
   width: 60rem;
+  max-width: 100%;
   background: var(--black-900);
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .header {
-  height: 10rem;
-  color: var(--white-100);
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  color: var(--white-100);
 
   h1 {
     font-weight: 200;
@@ -27,6 +27,12 @@
     span {
       font-weight: bold;
     }
+  }
+
+  img {
+    padding: 1rem;
+    width: 6rem;
+    height: 6rem;
   }
 }
 
@@ -40,10 +46,12 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
+    max-width: 500px;
   }
 
   input {
-    width: 31.43rem;
+    width: 100%;
     height: 3rem;
     border: none;
     border-radius: 0.5rem;
@@ -65,18 +73,16 @@
     cursor: pointer;
     font-size: 1.2rem;
     border-radius: 0.5rem;
-    padding: 0.6rem 0.6rem;
-
+    padding: 0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
 
-.containerUserGithubDisplay{
+.containerUserGithubDisplay {
   width: 100%;
   margin-top: 3.5rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,24 +90,24 @@
 
   .userGithubDisplay {
     width: 45rem;
-    height: 14rem;
+    max-width: 100%;
     background: var(--gray-300);
     border-radius: 1.25rem;
-  
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
 
-    img{
+    img {
       width: 12rem;
       height: 12rem;
       border-radius: 50%;
       border: 2px solid var(--blue-600);
-      margin-left: 2rem;
     }
 
-    .notFound{
+    .notFound {
       color: var(--red-600);
     }
 
@@ -109,8 +115,6 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
 
       h2 {
         font-size: 1.8rem;
@@ -118,7 +122,7 @@
         color: var(--blue-600);
       }
 
-      p{
+      p {
         font-size: 0.9rem;
         font-weight: 400;
         color: var(--gray-800);
@@ -127,4 +131,31 @@
   }
 }
 
+@media (max-width: 768px) {
+  .display {
+    padding: 1rem;
+  }
 
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+
+    .inputWrapper {
+      width: 100%;
+    }
+  }
+
+  .containerUserGithubDisplay .userGithubDisplay {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .containerUserGithubDisplay .userGithubDisplay img {
+    margin: 0;
+  }
+
+  .containerUserGithubDisplay .userGithubDisplay .containerUserInfo {
+    padding: 0;
+  }
+}
